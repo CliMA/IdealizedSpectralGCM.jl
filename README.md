@@ -1,4 +1,4 @@
-# GCM-from-Scratch
+# IdealizedSpetralGCM.jl
 JGCM is a lightweight educational spectral atmosphere model written with Julia. 
 The code follows the classical spectral atmosphere model developed in Geophysical Fluid Dynamics Laboratory.
 
@@ -14,7 +14,7 @@ You should be able to load the module
 julia> using JGCM
 ```
 
-When necessary, you can delete the package (in the current directory (GCM-from-Scratch))
+When necessary, yoGCMu can delete the package (in the current directory (GCM-from-Scratch))
 ```
 julia> ]
 pkg> rm JGCM
