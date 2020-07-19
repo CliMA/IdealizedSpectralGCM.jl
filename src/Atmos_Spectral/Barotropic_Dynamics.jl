@@ -10,9 +10,9 @@ function Barotropic_Dynamics!(mesh::Spectral_Spherical_Mesh,
     spe_vor_c = dyn_data.spe_vor_c
     spe_vor_p = dyn_data.spe_vor_p
   
-    grid_u = dyn_data.grid_u_c
+    grid_u, grid_u_n = dyn_data.grid_u_c, dyn_data.grid_u_n
     grid_δu = dyn_data.grid_δu
-    grid_v = dyn_data.grid_v_c 
+    grid_v, grid_v_n = dyn_data.grid_v_c, dyn_data.grid_v_n
     grid_δv = dyn_data.grid_δv
     grid_vor = dyn_data.grid_vor 
   
@@ -30,7 +30,6 @@ function Barotropic_Dynamics!(mesh::Spectral_Spherical_Mesh,
   
     Vor_Div_From_Grid_UV!(mesh, grid_δu, grid_δv, spe_δvor, spe_δdiv)
   
-    @show norm(spe_δdiv)
   
     Compute_Spectral_Damping!(integrator,  spe_vor_c, spe_vor_p, spe_δvor)
   
@@ -38,9 +37,9 @@ function Barotropic_Dynamics!(mesh::Spectral_Spherical_Mesh,
   
     Trans_Spherical_To_Grid!(mesh, spe_vor_n, grid_vor)
   
-    UV_Grid_From_Vor_Div!(mesh, spe_vor_n,  spe_zeros, grid_u, grid_v)
+    UV_Grid_From_Vor_Div!(mesh, spe_vor_n,  spe_zeros, grid_u_n, grid_v_n)
 
-    @show norm(grid_u), norm(grid_v), norm(grid_vor)
+    @show norm(grid_u_n), norm(grid_v_n), norm(grid_vor)
   
     Time_Advance!(dyn_data)
   
